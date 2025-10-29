@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Futuristic Dark Portfolio Design System */
+
+@layer base {
+  :root {
+    /* Dark space theme with neon accents */
+    --background: 240 8% 4%;
+    --foreground: 180 100% 95%;
+
+    --card: 240 10% 8%;
+    --card-foreground: 180 100% 95%;
+
+    --popover: 240 12% 10%;
+    --popover-foreground: 180 100% 95%;
+
+    /* Neon cyan primary */
+    --primary: 187 100% 50%;
+    --primary-foreground: 240 8% 4%;
+
+    /* Purple secondary */
+    --secondary: 270 75% 60%;
+    --secondary-foreground: 180 100% 95%;
+
+    /* Subtle dark muted */
+    --muted: 240 10% 15%;
+    --muted-foreground: 180 20% 60%;
+
+    /* Magenta accent */
+    --accent: 320 100% 50%;
+    --accent-foreground: 180 100% 95%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 180 100% 95%;
+
+    --border: 240 15% 18%;
+    --input: 240 15% 18%;
+    --ring: 187 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Gradient definitions */
+    --gradient-primary: linear-gradient(135deg, hsl(187 100% 50%), hsl(270 75% 60%));
+    --gradient-glow: linear-gradient(135deg, hsl(187 100% 50% / 0.2), hsl(320 100% 50% / 0.2));
+    --gradient-card: linear-gradient(135deg, hsl(240 10% 8% / 0.6), hsl(240 10% 12% / 0.4));
+
+    /* Glow effects */
+    --glow-cyan: 0 0 20px hsl(187 100% 50% / 0.5), 0 0 40px hsl(187 100% 50% / 0.3);
+    --glow-magenta: 0 0 20px hsl(320 100% 50% / 0.5), 0 0 40px hsl(320 100% 50% / 0.3);
+    --glow-purple: 0 0 20px hsl(270 75% 60% / 0.5), 0 0 40px hsl(270 75% 60% / 0.3);
+    
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/50;
+  }
+}
+
+@layer components {
+  /* Glassmorphism effect */
+  .glass {
+    background: rgba(10, 10, 15, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Glow text */
+  .glow-text {
+    text-shadow: var(--glow-cyan);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+    background: var(--gradient-card);
+    border-radius: var(--radius);
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: var(--radius);
+    padding: 2px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+  }
+
+  /* Hover scale effect */
+  .hover-scale {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Pulse glow animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: var(--glow-cyan);
+    }
+    50% {
+      box-shadow: var(--glow-magenta);
+    }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+}
